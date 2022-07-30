@@ -22,8 +22,9 @@ Fukakenクソゲー大会に向けて作成する。
 * [ドロー用ガチャ](https://www.amazon.co.jp/%E3%82%AE%E3%83%B3%E3%83%9D%E3%83%BC-%E3%81%98%E3%81%B6%E3%82%93%E3%81%A7%E3%81%A4%E3%81%8F%E3%82%8B-%E5%B7%A5%E4%BD%9C%E3%82%AD%E3%83%83%E3%83%88-%E3%82%AB%E3%83%BC%E3%83%89%E3%82%AC%E3%83%81%E3%83%A3-CG-KKW/dp/B07C1YKMXM/ref=asc_df_B07C1YKMXM/)
   * カードの自作方法について調べたら発見した。
   * ガチャガチャってテンション上がるし、カードも20枚付いてきてちょうどいい。
-  * [これ](https://www.amazon.co.jp/hacomo-%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%95%E3%83%88-WOW-%E3%82%AB%E3%83%BC%E3%83%89%E8%B2%A9%E5%A3%B2%E6%A9%9F-4515/dp/B07TVLHYTL/ref=pb_allspark_dp_sims_pao_desktop_session_based_sccl_3_2/356-5572851-5911458)でもいいかもしれない。その場合、カードは[これ](https://www.amazon.co.jp/%E3%82%A8%E3%83%BC%E3%83%AF%E3%83%B3-%E3%83%9E%E3%83%AB%E3%83%81%E3%82%AB%E3%83%BC%E3%83%89-%E9%80%8F%E6%98%8E%E3%83%84%E3%83%A4%E6%B6%88%E3%81%97-%E3%83%95%E3%83%81%E3%81%BE%E3%81%A7%E5%8D%B0%E5%88%B7-51642/dp/B005MTX6PK/ref=asc_df_B005MTX6PK/)で作成する。
+  * [これ](https://www.amazon.co.jp/hacomo-%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%95%E3%83%88-WOW-%E3%82%AB%E3%83%BC%E3%83%89%E8%B2%A9%E5%A3%B2%E6%A9%9F-4515/dp/B07TVLHYTL/ref=pb_allspark_dp_sims_pao_desktop_session_based_sccl_3_2/356-5572851-5911458)でもいいかもしれない。
   * プラスチックケース(100均で購入予定)
+  * カードは[これ](https://www.amazon.co.jp/%E3%82%A8%E3%83%BC%E3%83%AF%E3%83%B3-%E3%83%9E%E3%83%AB%E3%83%81%E3%82%AB%E3%83%BC%E3%83%89-%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B5%E3%82%A4%E3%82%BA-100%E6%9E%9A%E5%88%86-51164/dp/B00DN0F0OA/)を購入した。
 # 仕様
 * PCにカメラを接続、透明なケースに入れ、上を向かせる。上にカードを伏せて置き、カメラで認識させる。カメラは、養生テープで固定させる。  
 * スタートボタンでスタートする。

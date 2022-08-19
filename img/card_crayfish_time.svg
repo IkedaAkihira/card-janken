@@ -67,7 +67,7 @@
                 <html xmlns="http://www.w3.org/1999/xhtml">
                     <body>
                         <div style="font-size:30px">
-                        じゃんけんに勝てば、闇の力で相手は死ぬ。
+                        次のターン、すべてのプレイヤーはチョキとグー以外を出せない。(パーのカードはチョキとして扱われる。)
                         </div>
                     </body>
                 </html>

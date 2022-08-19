@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="540" height="860"
+    fill="#ffffff" stroke="#000000" stroke-width="5px">
+
+
+    <!--border-->
+    <rect stroke="#000" stroke-width="30" x="0" y="0" width="540" height="860" rx="45" ry="45"/>
+    <g transform="translate(15 15)">
+        <!--type-->
+        <use href="#rock"/>
+        
+        <!--card name-->
+        <text style="stroke:none;fill:#000000" font-size="40" x="305" y="50" alignment-baseline="middle" text-anchor="middle">
+        努力の拳
+        </text>
+        <!--card image-->
+        <g clip-path="url(#card-image)" transform="translate(20 110)">
+            <rect x="-10" y="-10" width="1000" height="2000" fill="#000080" style="stroke:none"/>
+            <circle filter="url(#aura)" cx="230" cy="160" r="150" fill="#ffff00" style="stroke:none"/>
+            <g transform="scale(3) translate(25 10)" stroke="#000070" fill="#0000ff">
+                <path d="M 75,75 l 10,-30 -50,-20 -3,9 -10,-4 -7,21 10,20 40,16z"/>
+                <path d="M 30,40 l 10,-30 12,5 -10,30z"/>
+                <path d="M 41,48 l 10,-30 12,5 -10,30z"/>
+                <path d="M 52,56 l 10,-30 12,5 -10,30z"/>
+                <path d="M 63,62 l 10,-30 12,5 -10,30z"/>
+            </g>
+        </g>
+        
+        <!--card text-->
+        <g transform="translate(20 460)">
+            <foreignObject x="0" y="0" width="470" height="350">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <body>
+                        <div style="font-size:30px">
+                        そこそこの拳を1枚手札に加え、手札を1枚捨てる。
+                        </div>
+                    </body>
+                </html>
+            </foreignObject>
+        </g>
+        
+
+        <!--qr code-->
+        <image width="160" height="160" x="330" y="670" href="test_qr.png"/>
+    </g>
+
+    <!--card cut line-->
+    <rect stroke="#fff" style="fill:none" stroke-width="1" x="0" y="0" width="540" height="860" rx="30" ry="30"/>
+
+
+    
+    <defs>
+        <clipPath id="card-image">
+            <rect width="470" height="350"/>
+        </clipPath>
+        <clipPath id="card-text">
+            <rect width="470" height="350"/>
+        </clipPath>
+        <g id="paper"><!---20,0-->
+            <circle cx="50" cy="50" r="50" style="stroke:none" fill="#4040ee"/>
+            <path d="M 75,70 
+            l 20,-28 -8,-5 -15,21 -3,-2 15,-30 -10,-5 -16,32 -4,-2 10,-40 -12,-3 -10,40 -4,-1 6,-36 -12,-2 -9,54 -8,-16 -10,5 15,30 10,10 28,4Z"/>
+        </g>
+        
+        <g id="scisor">
+            <circle cx="50" cy="50" r="50" style="stroke:none" fill="#40ee40"/>
+            <path d="M 70,80 l 8,-24 -20,-16    5,-30 -12,-2 -5,32 -5,-30 -12,2 5,28    -2.4,7.2 -5.6,16.8 8,16 30,10z"/>
+            <path d="M 52,61 l 8,-24 9.6,4 -8,24z"/>
+            <path d="M 60.8,65.8 l 8,-24 9.6,4 -8,24z"/>
+            <path d="M 25.8,50.8 l 15,5 -4,9.6 -15,-5z"/>
+        </g>
+
+        <g id="rock">
+            <circle cx="50" cy="50" r="50" style="stroke:none" fill="#ee4040"/>
+            <path d="M 75,75 l 10,-30 -50,-20 -3,9 -10,-4 -7,21 10,20 40,16z"/>
+            <path d="M 30,40 l 10,-30 12,5 -10,30z"/>
+            <path d="M 41,48 l 10,-30 12,5 -10,30z"/>
+            <path d="M 52,56 l 10,-30 12,5 -10,30z"/>
+            <path d="M 63,62 l 10,-30 12,5 -10,30z"/>
+        </g>
+
+        <filter id="turb">
+        
+            <feTurbulence type="fractalNoise" baseFrequency="0.05"
+            numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic"
+            scale="5"/>
+
+        </filter>
+
+        <filter id="aura">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03"
+            numOctaves="3"/>
+            <feDisplacementMap in="SourceGraphic" scale="160"/>
+        </filter>
+        <linearGradient id="linear-hell">
+            <stop stop-color="#202020" offset="0%"/>
+            <stop stop-color="#800000" offset="100%"/>
+        </linearGradient>
+    </defs>
+
+</svg>

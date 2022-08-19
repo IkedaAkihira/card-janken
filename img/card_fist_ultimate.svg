@@ -38,6 +38,16 @@
             </g>
 
         </g>
+
+        <path d="M 100,510 q 300,0 400,-300" stroke="none" fill="none" id="overlay-text"></path>
+        <text>
+            <textPath href="#overlay-text" 
+            filter="url(#aura-object)"
+            font-size="75" stroke-width="3px" font-weight="bold"
+            stroke="#fff" fill="url(#rainbow)">
+            EXTRA WIN!!
+            </textPath>
+        </text>
         
         <!--card text-->
         <g transform="translate(20 460)">
@@ -108,9 +118,9 @@
         </filter>
 
         <filter id="aura-object">
-            <feTurbulence type="fractalNoise" baseFrequency="0.45"
+            <feTurbulence type="fractalNoise" baseFrequency="0.05"
             numOctaves="2"/>
-            <feDisplacementMap in="SourceGraphic" scale="10"/>
+            <feDisplacementMap in="SourceGraphic" scale="30"/>
         </filter>
         <linearGradient id="linear-hell">
             <stop stop-color="#ffff00" offset="0%"/>

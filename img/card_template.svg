@@ -3,6 +3,46 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     width="540" height="860"
     fill="#ffffff" stroke="#000000" stroke-width="5px">
+
+
+    <!--border-->
+    <rect stroke="#000" stroke-width="30" x="0" y="0" width="540" height="860" rx="45" ry="45"/>
+    <g transform="translate(15 15)">
+        <!--type-->
+        <use href="#scisor"/>
+        
+        <!--card name-->
+        <text style="stroke:none;fill:#000000" font-size="40" x="305" y="50" alignment-baseline="middle" text-anchor="middle">
+        闇のチョキ
+        </text>
+        <!--card image-->
+        <g clip-path="url(#card-image)" transform="translate(20 110)">
+            <rect x="-10" y="-10" width="1000" height="2000" fill="#00ff00"/>
+        </g>
+        
+        <!--card text-->
+        <g transform="translate(20 460)">
+            <foreignObject x="0" y="0" width="470" height="350">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <body>
+                        <div style="font-size:30px">
+                        じゃんけんに勝てば、闇の力で相手は死ぬ。
+                        </div>
+                    </body>
+                </html>
+            </foreignObject>
+        </g>
+        
+
+        <!--qr code-->
+        <image width="160" height="160" x="330" y="670" href="test_qr.png"/>
+    </g>
+
+    <!--card cut line-->
+    <rect stroke="#fff" style="fill:none" stroke-width="1" x="0" y="0" width="540" height="860" rx="30" ry="30"/>
+
+
+    
     <defs>
         <clipPath id="card-image">
             <rect width="470" height="350"/>
@@ -32,42 +72,39 @@
             <path d="M 52,56 l 10,-30 12,5 -10,30z"/>
             <path d="M 63,62 l 10,-30 12,5 -10,30z"/>
         </g>
+
+        <filter id="turb">
+        
+            <feTurbulence type="fractalNoise" baseFrequency="0.05"
+            numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic"
+            scale="5"/>
+
+        </filter>
+
+        <filter id="aura">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03"
+            numOctaves="3"/>
+            <feDisplacementMap in="SourceGraphic" scale="160"/>
+        </filter>
+        <linearGradient id="linear-hell">
+            <stop stop-color="#202020" offset="0%"/>
+            <stop stop-color="#800000" offset="100%"/>
+        </linearGradient>
+
+        <radialGradient id="light">
+            <stop stop-color="#ffffff" offset="0%"/>
+            <stop stop-color="#00000000" offset="100%"/>
+        </radialGradient>
+        
+        <linearGradient id="rainbow">
+            <stop stop-color="#ff8080" offset="0%"/>
+            <stop stop-color="#ffff00" offset="20%"/>
+            <stop stop-color="#00ff00" offset="40%"/>
+            <stop stop-color="#00ffff" offset="60%"/>
+            <stop stop-color="#8080ff" offset="80%"/>
+            <stop stop-color="#ff00ff" offset="100%"/>
+        </linearGradient>
     </defs>
-
-
-
-    <!--border-->
-    <rect stroke="#000" stroke-width="30" x="0" y="0" width="540" height="860" rx="45" ry="45"/>
-    <g transform="translate(15 15)">
-        <!--type-->
-        <use href="#scisor"/>
-        
-        <!--card name-->
-        <text style="stroke:none;fill:#000000" font-size="40" x="305" y="50" alignment-baseline="middle" text-anchor="middle">闇のチョキ</text>
-        <!--card image-->
-        <g clip-path="url(#card-image)" transform="translate(20 110)">
-            <rect x="-10" y="-10" width="1000" height="2000" fill="#00ff00"/>
-        </g>
-        
-        <!--card text-->
-        <g transform="translate(20 460)">
-            <foreignObject x="0" y="0" width="470" height="350">
-                <html xmlns="http://www.w3.org/1999/xhtml">
-                    <body>
-                        <div style="font-size:30px">
-                        じゃんけんに勝てば、闇の力で相手は死ぬ。
-                        </div>
-                    </body>
-                </html>
-            </foreignObject>
-        </g>
-        
-
-        <!--qr code-->
-        <image width="160" height="160" x="330" y="670" href="test_qr.png"/>
-    </g>
-
-    <!--card cut line-->
-    <rect stroke="#fff" style="fill:none" stroke-width="1" x="0" y="0" width="540" height="860" rx="30" ry="30"/>
 
 </svg>

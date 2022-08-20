@@ -57,10 +57,11 @@
             <rect x="0" y="0" width="470" height="350"
             fill="#55eeee" stroke="none"/>
             <rect x="0" y="0" width="470" height="350"
-            fill="#00aaaa" filter="url(#noise)" stroke="none"/>
-            <g transform="rotate(-25) scale(0.9) translate(10 80)">
+            fill="#000000" filter="url(#noise)" stroke="none"/>
+            <g transform="rotate(-25) scale(0.9) translate(10 80)"
+            stroke="#800000">
                 <path
-                    style="fill:#b00000"
+                    style="fill:#f00000"
                     d="M 120,200 q -50,100 80,200 q -30,-20 -50,-300"
                 />
                 <path

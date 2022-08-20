@@ -92,7 +92,7 @@
                 26,-40 34,-40 30,0
                 30,0 36,-30 44,-30 40,0
                 30,40 30,200
-                Z" stroke="#000000"/>
+                Z" stroke="#808080"/>
             </g>
             <g mask="url(#shadow)"> 
                 <g transform="translate(200,200)">
@@ -102,20 +102,21 @@
                     <path d="M 20,0 26,-40 34,-40 30,0Z"/>
                     <path d="M 30,0 36,-30 44,-30 40,0Z"/>
                     <path d="M 10,40 -18,8 -12,2 5,20Z"/>-->
-                    <path  fill="#000000" transform="translate(110,15) rotate(125) scale(1.25)" stroke-width="4" d="
+                    <path  fill="#404040" transform="translate(110,15) rotate(125) scale(1.25)" stroke-width="4" d="
                     M 10,200 L 
                     10,40 -18,8 -12,2 5,20 0,0 -9,-40 -1,-40 10,0
                     11,-45 19,-45 20,0
                     26,-40 34,-40 30,0
                     30,0 36,-30 44,-30 40,0
                     30,40 30,200
-                    Z" stroke="#000000"/>
+                    Z" stroke="#404040"/>
                 </g>
             </g>
 
-            <g transform="translate(30 90) rotate(-35) scale(0.5) " stroke-width="10">
+            <g transform="translate(30 90) rotate(-35) scale(0.5) "
+            stroke-width="10" stroke="#800000">
                 <path transform="rotate(15)"
-                    style="fill:#b00000"
+                    style="fill:#f00000"
                     d="M 120,200 q -50,100 80,200 q -30,-20 -50,-300z"
                 />
 

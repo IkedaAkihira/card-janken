@@ -55,7 +55,9 @@
         <!--card image-->
         <g clip-path="url(#card-image)" transform="translate(20 110)">
             <rect x="0" y="0" width="470" height="350"
-            fill="#55eeee" filter="url(#noise)" stroke="none"/>
+            fill="#55eeee" stroke="none"/>
+            <rect x="0" y="0" width="470" height="350"
+            fill="#00aaaa" filter="url(#noise)" stroke="none"/>
             <g transform="rotate(-25) scale(0.9) translate(10 80)">
                 <path
                     style="fill:#b00000"

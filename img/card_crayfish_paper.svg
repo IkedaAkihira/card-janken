@@ -69,6 +69,11 @@
         </text>
         <!--card image-->
         <g clip-path="url(#card-image)" transform="translate(20 110)">
+
+            <rect 
+            fill="#00aaaa"
+            x="0" y="0" width="470" height="350" stroke="none"/>
+
             <rect 
             fill="#55eeee" filter="url(#noise)"
             x="0" y="0" width="470" height="350" stroke="none"/>

@@ -34,7 +34,7 @@
         </g>
 
         <mask id="shadow">
-            <g transform="translate(42 102) rotate(-35) scale(0.5) " stroke-width="10">
+            <g transform="translate(39 99) rotate(-35) scale(0.5) " stroke-width="10">
                 <path transform="rotate(15)"
                     style="fill:#ffffff"
                     d="M 120,200 q -50,100 80,200 q -30,-20 -50,-300z"
@@ -71,11 +71,11 @@
         <g clip-path="url(#card-image)" transform="translate(20 110)">
 
             <rect 
-            fill="#00aaaa"
+            fill="#55eeee"
             x="0" y="0" width="470" height="350" stroke="none"/>
 
             <rect 
-            fill="#55eeee" filter="url(#noise)"
+            fill="#00aaaa" filter="url(#noise)"
             x="0" y="0" width="470" height="350" stroke="none"/>
             
             <g transform="translate(200,200)">

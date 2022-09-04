@@ -16,9 +16,15 @@
         最強のチョキ
         </text>
         <!--card image-->
+
         <g clip-path="url(#card-image)" transform="translate(20 110)">
-            <rect x="-10" y="-10" width="1000" height="2000" fill="#00ff00"/>
-            <use href="#muryokusho" x="235" y="175"/>
+            <rect x="0" y="0" width="470" height="350"
+            fill="#024" stroke="none"/>
+            <circle r="160" cx="255" cy="195" stroke="none"
+            filter="url(#aura)"/>
+
+            <use href="#muryokusho" x="235" y="175"
+            fill="#fdc" stroke="#000" stroke-width="2"/>
 
         </g>
         
@@ -135,9 +141,8 @@
             <!--人差し指-->
             <path d="
             M 5,20
-            L 5,-100
-            15,-110
-            25,-100
+            L 5,-110
+            22,-100
             25,20
             "/>
             <!--薬指-->

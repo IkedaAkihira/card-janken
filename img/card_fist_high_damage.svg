@@ -17,7 +17,17 @@
         </text>
         <!--card image-->
         <g clip-path="url(#card-image)" transform="translate(20 110)">
-            <rect x="-10" y="-10" width="1000" height="2000" fill="#00ff00"/>
+            <rect x="0" y="0" width="470" height="350"
+            fill="#000000"/>
+            <rect x="-10" y="0" width="490" height="350"
+            fill="url(#bg)" filter="url(#aura)"/>
+            <use href="#no-path-fist" transform="translate(260 50) scale(2)"
+            fill-opacity="0.25"/>
+            <use href="#no-path-fist" transform="translate(290 50) scale(2)"
+            fill-opacity="0.5"/>
+            <use href="#no-path-fist" transform="translate(320 50) scale(2)"
+            fill-opacity="0.75"/>
+            <use href="#no-path-fist" transform="translate(350 50) scale(2)"/>
         </g>
         
         <!--card text-->
@@ -85,26 +95,38 @@
         <filter id="aura">
             <feTurbulence type="fractalNoise" baseFrequency="0.03"
             numOctaves="3"/>
-            <feDisplacementMap in="SourceGraphic" scale="160"/>
+            <feDisplacementMap in="SourceGraphic" scale="30"/>
         </filter>
-        <linearGradient id="linear-hell">
-            <stop stop-color="#202020" offset="0%"/>
-            <stop stop-color="#800000" offset="100%"/>
+
+        <linearGradient id="bg" y1="1" x2="0">
+            <stop stop-color="#00000000" offset="30%"/>
+            <stop stop-color="#ccccccff" offset="50%"/>
+            <stop stop-color="#00000000" offset="70%"/>
         </linearGradient>
 
-        <radialGradient id="light">
-            <stop stop-color="#ffffff" offset="0%"/>
-            <stop stop-color="#00000000" offset="100%"/>
-        </radialGradient>
+        <g id="fist">
+            <g transform="rotate(75)">
+                <path d="M 75,75 l 10,-30 -50,-20 -3,9 -10,-4 -7,21 10,20 40,16z"/>
+                <path d="M 30,40 l 10,-30 12,5 -10,30z"/>
+                <path d="M 41,48 l 10,-30 12,5 -10,30z"/>
+                <path d="M 52,56 l 10,-30 12,5 -10,30z"/>
+                <path d="M 63,62 l 10,-30 12,5 -10,30z"/>
+            </g>
+        </g>
+
+        <mask id="fist-stroke">
+            <use href="#fist" stroke="#ffffff" fill="#000000"/>
+        </mask>
+
         
-        <linearGradient id="rainbow">
-            <stop stop-color="#ff8080" offset="0%"/>
-            <stop stop-color="#ffff00" offset="20%"/>
-            <stop stop-color="#00ff00" offset="40%"/>
-            <stop stop-color="#00ffff" offset="60%"/>
-            <stop stop-color="#8080ff" offset="80%"/>
-            <stop stop-color="#ff00ff" offset="100%"/>
-        </linearGradient>
+        <mask id="fist-fill">
+            <use href="#fist" stroke="#000000" fill="#ffffff"/>
+        </mask>
+
+        <g id="no-path-fist">
+            <rect mask="url(#fist-stroke)" fill="#ffffff" stroke="none" width="200" height="200" x="-100"/>
+            <rect mask="url(#fist-fill)" fill="#000000" stroke="none" width="200" height="200" x="-100"/>
+        </g>
     </defs>
 
 </svg>

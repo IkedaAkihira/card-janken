@@ -17,7 +17,26 @@
         </text>
         <!--card image-->
         <g clip-path="url(#card-image)" transform="translate(20 110)">
-            <rect x="-10" y="-10" width="1000" height="2000" fill="#00ff00"/>
+            <rect x="0" y="0" width="470" height="350"
+            fill="#000" stroke="none"/>
+            <rect x="0" y="0" width="470" height="350"
+            fill="url(#back)" stroke="none"
+            filter="url(#aura)"/>
+            <g transform="translate(235,175)"
+            fill="#00ff80" stroke="none">
+                <use href="#leaf"/>
+                <use href="#leaf" transform="rotate(90)"/>
+                <use href="#leaf" transform="rotate(180)"/>
+                <use href="#leaf" transform="rotate(270)"/>
+            </g>
+            <g transform="translate(100 50) scale(2.5)"
+            stroke="#ff0080">
+                <path d="M 75,75 l 10,-30 -50,-20 -3,9 -10,-4 -7,21 10,20 40,16z"/>
+                <path d="M 30,40 l 10,-30 12,5 -10,30z"/>
+                <path d="M 41,48 l 10,-30 12,5 -10,30z"/>
+                <path d="M 52,56 l 10,-30 12,5 -10,30z"/>
+                <path d="M 63,62 l 10,-30 12,5 -10,30z"/>
+            </g>
         </g>
         
         <!--card text-->
@@ -87,24 +106,16 @@
             numOctaves="3"/>
             <feDisplacementMap in="SourceGraphic" scale="160"/>
         </filter>
-        <linearGradient id="linear-hell">
-            <stop stop-color="#202020" offset="0%"/>
-            <stop stop-color="#800000" offset="100%"/>
-        </linearGradient>
-
-        <radialGradient id="light">
+        <radialGradient id="back">
             <stop stop-color="#ffffff" offset="0%"/>
-            <stop stop-color="#00000000" offset="100%"/>
+            <stop stop-color="#ff008010" offset="100%"/>
         </radialGradient>
-        
-        <linearGradient id="rainbow">
-            <stop stop-color="#ff8080" offset="0%"/>
-            <stop stop-color="#ffff00" offset="20%"/>
-            <stop stop-color="#00ff00" offset="40%"/>
-            <stop stop-color="#00ffff" offset="60%"/>
-            <stop stop-color="#8080ff" offset="80%"/>
-            <stop stop-color="#ff00ff" offset="100%"/>
-        </linearGradient>
+
+        <path id="leaf" d="
+        M 5,5
+        l 100,0
+        c 25,0 50,25 50,50 0,25 -25,50 -50,50
+        0,25 -25,50 -50,50 -25,0 -50,-25 -50,-50Z"/>
     </defs>
 
 </svg>

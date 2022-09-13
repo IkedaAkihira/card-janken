@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="540" height="860"
+    fill="#ffffff" stroke="#000000" stroke-width="5px">
+
+
+    <!--border-->
+    <rect stroke="#000" stroke-width="30" x="0" y="0" width="540" height="860" rx="45" ry="45"/>
+    <g transform="translate(15 15)">
+        <!--type-->
+        <use href="#rock"/>
+        
+        <!--card name-->
+        <text style="stroke:none;fill:#000000" font-size="40" x="305" y="50" alignment-baseline="middle" text-anchor="middle">
+        投石器
+        </text>
+        <!--card image-->
+        <g clip-path="url(#card-image)" transform="translate(20 110)">
+            <rect x="0" y="0" width="470" height="350" fill="#390000" stroke="none"/>
+            <use  href="#check" fill="#800000" filter="url(#aura)"/>
+            <use href="#trebuchet" x="235" y="120"
+            fill="#c09000" stroke="#7c6100"/>
+        </g>
+        
+        <!--card text-->
+        <g transform="translate(20 460)">
+            <foreignObject x="0" y="0" width="470" height="350">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <body>
+                        <div style="font-size:30px">
+                        じゃんけんに負けてもダメージを受けない。
+                        </div>
+                    </body>
+                </html>
+            </foreignObject>
+        </g>
+        
+
+        <!--qr code-->
+        <image width="160" height="160" x="330" y="670" href="test_qr.png"/>
+    </g>
+
+    <!--card cut line-->
+    <rect stroke="#fff" style="fill:none" stroke-width="1" x="0" y="0" width="540" height="860" rx="30" ry="30"/>
+
+
+    
+    <defs>
+        <clipPath id="card-image">
+            <rect width="470" height="350"/>
+        </clipPath>
+        <clipPath id="card-text">
+            <rect width="470" height="350"/>
+        </clipPath>
+        <g id="paper"><!---20,0-->
+            <circle cx="50" cy="50" r="50" style="stroke:none" fill="#4040ee"/>
+            <path d="M 75,70 
+            l 20,-28 -8,-5 -15,21 -3,-2 15,-30 -10,-5 -16,32 -4,-2 10,-40 -12,-3 -10,40 -4,-1 6,-36 -12,-2 -9,54 -8,-16 -10,5 15,30 10,10 28,4Z"/>
+        </g>
+        
+        <g id="scisor">
+            <circle cx="50" cy="50" r="50" style="stroke:none" fill="#40ee40"/>
+            <path d="M 70,80 l 8,-24 -20,-16    5,-30 -12,-2 -5,32 -5,-30 -12,2 5,28    -2.4,7.2 -5.6,16.8 8,16 30,10z"/>
+            <path d="M 52,61 l 8,-24 9.6,4 -8,24z"/>
+            <path d="M 60.8,65.8 l 8,-24 9.6,4 -8,24z"/>
+            <path d="M 25.8,50.8 l 15,5 -4,9.6 -15,-5z"/>
+        </g>
+
+        <g id="rock">
+            <circle cx="50" cy="50" r="50" style="stroke:none" fill="#ee4040"/>
+            <path d="M 75,75 l 10,-30 -50,-20 -3,9 -10,-4 -7,21 10,20 40,16z"/>
+            <path d="M 30,40 l 10,-30 12,5 -10,30z"/>
+            <path d="M 41,48 l 10,-30 12,5 -10,30z"/>
+            <path d="M 52,56 l 10,-30 12,5 -10,30z"/>
+            <path d="M 63,62 l 10,-30 12,5 -10,30z"/>
+        </g>
+
+        <filter id="turb">
+        
+            <feTurbulence type="fractalNoise" baseFrequency="0.05"
+            numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic"
+            scale="5"/>
+
+        </filter>
+
+        <filter id="aura">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03"
+            numOctaves="3"/>
+            <feDisplacementMap in="SourceGraphic" scale="50"/>
+        </filter>
+        <linearGradient id="linear-hell">
+            <stop stop-color="#202020" offset="0%"/>
+            <stop stop-color="#800000" offset="100%"/>
+        </linearGradient>
+
+        <radialGradient id="light">
+            <stop stop-color="#ffffff" offset="0%"/>
+            <stop stop-color="#00000000" offset="100%"/>
+        </radialGradient>
+        
+        <linearGradient id="rainbow">
+            <stop stop-color="#ff8080" offset="0%"/>
+            <stop stop-color="#ffff00" offset="20%"/>
+            <stop stop-color="#00ff00" offset="40%"/>
+            <stop stop-color="#00ffff" offset="60%"/>
+            <stop stop-color="#8080ff" offset="80%"/>
+            <stop stop-color="#ff00ff" offset="100%"/>
+        </linearGradient>
+        <g id="check" transform="translate(-15 -75)">
+            <rect x="0" y="0" width="100" height="100" stroke="none"/>
+            <rect x="200" y="0" width="100" height="100" stroke="none"/>
+            <rect x="400" y="0" width="100" height="100" stroke="none"/>
+            <rect x="100" y="100" width="100" height="100" stroke="none"/>
+            <rect x="300" y="100" width="100" height="100" stroke="none"/>
+            <rect x="0" y="200" width="100" height="100" stroke="none"/>
+            <rect x="200" y="200" width="100" height="100" stroke="none"/>
+            <rect x="400" y="200" width="100" height="100" stroke="none"/>
+            <rect x="100" y="300" width="100" height="100" stroke="none"/>
+            <rect x="300" y="300" width="100" height="100" stroke="none"/>
+            <rect x="0" y="400" width="100" height="100" stroke="none"/>
+            <rect x="200" y="400" width="100" height="100" stroke="none"/>
+            <rect x="400" y="400" width="100" height="100" stroke="none"/>
+        </g>
+
+        <g id="trebuchet-thrower">
+
+            <path d="
+            M -200,-7
+            L 200,-7
+            200,7
+            C 200,35 175,55 150,55
+            125,55 100,35 100,7
+            L -200,7Z"/>
+            <path d="
+            M -220,-15
+            L -160,-15
+            -160,15
+            -220,15Z"/>
+        </g>
+
+        <g id="trebuchet-bullet">
+            <path d="
+            M 0,-40
+            L 20,-35
+            40,-20
+            40,0
+            30,15
+            20,20
+            0,20
+            -20,0
+            -30,-5
+            -35,-20
+            -30,-35
+            -10,-40Z"/>
+        </g>
+
+        <g id="trebuchet">
+            <use fill="#aaaaaa" stroke="#707070"
+            href="#trebuchet-bullet"
+            transform="rotate(-15)" x="150" y="6"/>
+
+            <use transform="rotate(-15)" href="#trebuchet-thrower"/>
+            <path d="M 30,0 L
+            0,-30 -150,120 -120,150Z"/>
+            <path d="M -30,0 L
+            0,-30 150,120 120,150Z"/>
+            <path d="M -175,140 L
+            175,140 175,105 -175,105Z"/>
+            <circle cx="90" cy="140" r="40"/>
+            <circle cx="-90" cy="140" r="40"/>
+        </g>
+    </defs>
+
+</svg>

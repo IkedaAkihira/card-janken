@@ -18,7 +18,51 @@
         <!--card image-->
         <g clip-path="url(#card-image)" transform="translate(20 110)">
             <rect x="0" y="0" width="470" height="350"
-            fill="#00ff00" stroke="none"/>
+            fill="#ddc444" stroke="none"/>
+            <g transform="translate(0 80) rotate(-45) scale(1.5)">
+                <g fill-opacity="0.25">
+                    <rect x="0" y="0"
+                    width="200" height="200"
+                    mask="url(#scissor-fill)"/>
+                    
+                    <rect x="0" y="0"
+                    width="200" height="200"
+                    mask="url(#scissor-stroke)"
+                    fill="#000000"/>
+                </g>
+                <g fill-opacity="0.5" transform="rotate(15) scale(1.2) translate(20)">
+                    <rect x="0" y="0"
+                    width="200" height="200"
+                    mask="url(#scissor-fill)"/>
+                    
+                    <rect x="0" y="0"
+                    width="200" height="200"
+                    mask="url(#scissor-stroke)"
+                    fill="#000000"/>
+                </g>
+                
+                <g fill-opacity="0.75" transform="rotate(30) scale(1.44) translate(40)">
+                    <rect x="0" y="0"
+                    width="200" height="200"
+                    mask="url(#scissor-fill)"/>
+                    
+                    <rect x="0" y="0"
+                    width="200" height="200"
+                    mask="url(#scissor-stroke)"
+                    fill="#000000"/>
+                </g>
+                
+                <g transform="rotate(45) scale(1.728) translate(60)">
+                    <rect x="0" y="0"
+                    width="200" height="200"
+                    mask="url(#scissor-fill)"/>
+                    
+                    <rect x="0" y="0"
+                    width="200" height="200"
+                    mask="url(#scissor-stroke)"
+                    fill="#000000"/>
+                </g>
+            </g>
 
         </g>
         
@@ -108,7 +152,22 @@
             <stop stop-color="#ff00ff" offset="100%"/>
         </linearGradient>
 
-        
+        <mask id="scissor-stroke">
+            <g stroke="#ffffff" fill="#000000">
+                <path d="M 70,80 l 8,-24 -20,-16    5,-30 -12,-2 -5,32 -5,-30 -12,2 5,28    -2.4,7.2 -5.6,16.8 8,16 30,10z"/>
+                <path d="M 52,61 l 8,-24 9.6,4 -8,24z"/>
+                <path d="M 60.8,65.8 l 8,-24 9.6,4 -8,24z"/>
+                <path d="M 25.8,50.8 l 15,5 -4,9.6 -15,-5z"/>
+            </g>        
+        </mask>
+        <mask id="scissor-fill">
+            <g stroke="#000000" fill="#ffffff">
+                <path d="M 70,80 l 8,-24 -20,-16    5,-30 -12,-2 -5,32 -5,-30 -12,2 5,28    -2.4,7.2 -5.6,16.8 8,16 30,10z"/>
+                <path d="M 52,61 l 8,-24 9.6,4 -8,24z"/>
+                <path d="M 60.8,65.8 l 8,-24 9.6,4 -8,24z"/>
+                <path d="M 25.8,50.8 l 15,5 -4,9.6 -15,-5z"/>
+            </g>        
+        </mask>
     </defs>
 
 </svg>

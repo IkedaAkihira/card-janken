@@ -283,11 +283,17 @@ class CardShield extends Card{
     }
 }
 
-
 /**
  * @return {Number}
  */
-function getCardId(){
+function getCardId(imageData){
+
+}
+
+/**
+ * @return {Number[]}
+ */
+function getCardIds(){
 
 }
 

@@ -38,6 +38,50 @@ class Card{
         this.type=type;
     }
 
+    static fromCardId(cardId){
+        if(cardId===0)
+            return new CardCrayFish();
+        if(cardId===1)
+            return new CardCrayFishPaper();
+        if(cardId===2)
+            return new CardFistNoob();
+        if(cardId===3)
+            return new CardFistLucky();
+        if(cardId===4)
+            return new CardHeal();
+        if(cardId===5)
+            return new CardProvidence();
+        if(cardId===6)
+            return new CardStrongest();
+        if(cardId===7)
+            return new CardUnreasonable();
+        if(cardId===8)
+            return new CardFistStrong();
+        if(cardId===9)
+            return new CardChoice();
+        if(cardId===10)
+            return new CardContinuous();
+        if(cardId===11)
+            return new CardAdditional();
+        if(cardId===12)
+            return new CardFistTraining();
+        if(cardId===13)
+            return new CardFistNormal();
+        if(cardId===14)
+            return new CardFistProficiency();
+        if(cardId===15)
+            return new CardFistStrongGuy();
+        if(cardId===16)
+            return new CardFistUltimate();
+        if(cardId===17)
+            return new CardTrebuchet();
+        if(cardId===18)
+            return new CardSword();
+        if(cardId===19)
+	        return new CardShield();
+        return undefined;
+    }
+
     /**
      * 
      * @param {Player} player 
@@ -283,19 +327,38 @@ class CardShield extends Card{
     }
 }
 
+function getImageDataFromVideo(video,x,y,width,height){
+    const canvas=document.createElement('canvas');
+    canvas.height=video.videoHeight;
+    canvas.width=video.videoWidth;
+
+    const ctx=canvas.getContext('2d');
+
+    ctx.drawImage(video,0,0);
+
+    const imageData=ctx.getImageData(x,y,width,height);
+
+    return imageData;
+}
+
 /**
  * @return {Number}
  */
 function getCardId(imageData){
-
+    
+    const code=jsQR(
+        imageData.data,
+        imageData.width,
+        imageData.height,
+        {inversionAttempts:'dontInvert'}
+    );
+    if(!code)
+        return NaN;
+    return parseInt(
+        code.data
+    )||NaN;
 }
 
-/**
- * @return {Number[]}
- */
-function getCardIds(){
-
-}
 
 
 

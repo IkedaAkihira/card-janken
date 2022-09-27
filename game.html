@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/desvg@1.0.2/desvg.min.js"></script>
     <script src="./jsQR.js"></script>
+    <script src="script.js"></script>
 
     <title>カードジャンケン</title>
 </head>
@@ -19,6 +20,42 @@
         
     </div>
 
-    <script src="script.js"></script>
+    
+    <script>
+        const video=document.createElement('video');
+        const playerL=new Player(5);
+        const playerR=new Player(5);
+
+        document.body.appendChild(video);
+
+        navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then((stream)=>{
+            video.srcObject=stream;
+            video.play();
+            requestAnimationFrame(tick);
+        });
+
+        function tick(){
+            requestAnimationFrame(tick);
+
+            if(video.readyState!==video.HAVE_ENOUGH_DATA){
+                return;
+            }
+
+            const imageDataL=getImageDataFromVideo(video,0,0,Math.floor(video.videoWidth/2),video.videoHeight);
+            const imageDataR=getImageDataFromVideo(video,Math.floor(video.videoWidth/2),0,Math.floor(video.videoWidth/2),video.videoHeight);
+            
+            const cardIdL=getCardId(imageDataL);
+            const cardIdR=getCardId(imageDataR);
+
+            if(cardIdL)
+                playerL.card=Card.fromCardId(cardIdL);
+                
+            if(cardIdR)
+                playerR.card=Card.fromCardId(cardIdR);
+            
+            console.log(playerL,playerR);
+            requestAnimationFrame(tick);
+        }
+    </script>
 </body>
 </html>

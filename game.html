@@ -41,6 +41,7 @@
                 return;
             }
 
+            //update player cards
             const imageDataL=getImageDataFromVideo(video,0,0,Math.floor(video.videoWidth/2),video.videoHeight);
             const imageDataR=getImageDataFromVideo(video,Math.floor(video.videoWidth/2),0,Math.floor(video.videoWidth/2),video.videoHeight);
             
@@ -51,10 +52,7 @@
                 playerL.card=Card.fromCardId(cardIdL);
                 
             if(cardIdR)
-                playerR.card=Card.fromCardId(cardIdR);
-            
-            console.log(playerL,playerR);
-            requestAnimationFrame(tick);
+                playerR.card=Card.fromCardId(cardIdR);   
         }
     </script>
 </body>

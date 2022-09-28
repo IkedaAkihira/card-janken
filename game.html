@@ -22,26 +22,28 @@
 
     
     <script>
+        const life=5;
+        const playerL=new Player(life);
+        const playerR=new Player(life);
+
+        //camera setup
         const video=document.createElement('video');
-        const playerL=new Player(5);
-        const playerR=new Player(5);
-
-        document.body.appendChild(video);
-
         navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then((stream)=>{
             video.srcObject=stream;
             video.play();
             requestAnimationFrame(tick);
         });
 
+        //update player card
         function tick(){
             requestAnimationFrame(tick);
 
-            if(video.readyState!==video.HAVE_ENOUGH_DATA){
+            if(video.readyState!==video.HAVE_ENOUGH_DATA)
                 return;
-            }
 
-            //update player cards
+            if(!shouldUpdatePlayers)
+                return;
+            
             const imageDataL=getImageDataFromVideo(video,0,0,Math.floor(video.videoWidth/2),video.videoHeight);
             const imageDataR=getImageDataFromVideo(video,Math.floor(video.videoWidth/2),0,Math.floor(video.videoWidth/2),video.videoHeight);
             
@@ -52,8 +54,10 @@
                 playerL.card=Card.fromCardId(cardIdL);
                 
             if(cardIdR)
-                playerR.card=Card.fromCardId(cardIdR);   
+                playerR.card=Card.fromCardId(cardIdR);
         }
+
+        mainloop(playerL,playerR);
     </script>
 </body>
 </html>

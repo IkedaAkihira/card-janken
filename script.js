@@ -27,16 +27,12 @@ class Card{
     id;
     /**@type {string} */
     name;
-    /**@type {string} */
+    /**@type {number} */
     type;
 
     static ROCK=0;
     static SCISSOR=1;
     static PAPER=2;
-
-    static WIN=2;
-    static LOSE=1;
-    static DRAW=0;
 
     /**
      * 
@@ -119,6 +115,10 @@ class Card{
 }
 
 class Player{
+    static JUDGE_WIN=2;
+    static JUDGE_LOSE=1;
+    static JUDGE_DRAW=0;
+
     /**@type {number} */
     hp;
     /**@type {Effect[]} */
@@ -131,6 +131,17 @@ class Player{
     constructor(hp){
         this.hp=hp;
         this.effects=[];
+    }
+
+    /**
+     * @param {Player} opponent
+     */
+    updateJudge(opponent){
+        this.judge=(3+this.card.type-opponent.card.type)%3;
+    }
+
+    win(){
+
     }
 }
 
@@ -211,9 +222,9 @@ class CardFistLucky extends Card{
     }
 
     play(player,opponent){
-        if(player.judge===WIN){
+        if(player.judge===Player.JUDGE_WIN){
             opponent.hp--;
-        }else if(player.judge===LOSE){
+        }else if(player.judge===Player.JUDGE_LOSE){
             player.hp--;
         }
     }
@@ -255,7 +266,7 @@ class CardUnreasonable extends Card{
     play(player,opponent){
         opponent.hp--;
 
-        if(player.judge===WIN)
+        if(player.judge===Player.JUDGE_WIN)
             opponent++;
     }
 }
@@ -266,7 +277,7 @@ class CardFistStrong extends Card{
     }
 
     play(player,opponent){
-        if(player.judge==WIN)
+        if(player.judge===Player.JUDGE_WIN)
             opponent.hp--;
     }
 }
@@ -319,7 +330,7 @@ class CardFistUltimate extends Card{
     }
 
     play(player,opponent){
-        opponent.hp-=100000;
+        player.win();
     }
 }
 
@@ -401,7 +412,7 @@ function getCardId(imageData){
  * 
  * @param {Player[]} players 
  */
-function resetPlayerCards(players){
+function resetPlayerCards(...players){
     for(const player of players){
         player.card=null;
     }
@@ -423,6 +434,8 @@ function mainloop(player0,player1){
         return;
     }
 
+    shouldUpdatePlayers=false;
+
     for(const effect of player0.effects){
         effect.run(player0,player1);
     }
@@ -431,11 +444,28 @@ function mainloop(player0,player1){
         effect.run(player1,player0);
     }
 
+    player0.updateJudge(player1);
+    player1.updateJudge(player0);
+
     player0.card.prePlay(player0,player1);
     player1.card.prePlay(player1,player0);
 
     player0.card.play(player0,player1);
     player1.card.play(player1,player0);
+
+    if(player0.judge===Player.JUDGE_WIN)
+        player1.hp--;
+    
+    if(player1.judge===Player.JUDGE_WIN)
+        player0.hp--;
+    
+    if(player0.hp<=0)
+        player1.win();
+        
+    if(player1.hp<=0)
+        player0.win();
+
+    resetPlayerCards(player0,player1);
 
     setTimeout(()=>{
         mainloop(player0,player1);

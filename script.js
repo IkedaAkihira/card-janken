@@ -21,8 +21,14 @@ const cardList=[
     '盾'
 ];
 
+let shouldUpdatePlayers=true;
 class Card{
-    id;name;type;
+    /**@type {number} */
+    id;
+    /**@type {string} */
+    name;
+    /**@type {string} */
+    type;
 
     static ROCK=0;
     static SCISSOR=1;
@@ -32,12 +38,23 @@ class Card{
     static LOSE=1;
     static DRAW=0;
 
+    /**
+     * 
+     * @param {number} id 
+     * @param {string} name 
+     * @param {string} type 
+     */
     constructor(id,name,type){
         this.id=id;
         this.name=name;
         this.type=type;
     }
 
+    /**
+     * 
+     * @param {number} cardId 
+     * @returns {Card}
+     */
     static fromCardId(cardId){
         if(cardId===0)
             return new CardCrayFish();
@@ -91,15 +108,24 @@ class Card{
 
     }
 
+    /**
+     * 
+     * @param {Player} player 
+     * @param {Player} opponent 
+     */
     prePlay(player,opponent){
 
     }
 }
 
 class Player{
+    /**@type {number} */
     hp;
+    /**@type {Effect[]} */
     effects;
+    /**@type {Card} */
     card;
+    /**@type {number} */
     judge;
 
     constructor(hp){
@@ -109,7 +135,9 @@ class Player{
 }
 
 class Effect{
-    time;
+    /**@type {number} */
+    time; 
+    /**@type {string} */
     effectText;
 
     /**
@@ -327,6 +355,15 @@ class CardShield extends Card{
     }
 }
 
+/**
+ * 
+ * @param {HTMLVideoElement} video 
+ * @param {number} x 
+ * @param {number} y 
+ * @param {number} width 
+ * @param {number} height 
+ * @returns 
+ */
 function getImageDataFromVideo(video,x,y,width,height){
     const canvas=document.createElement('canvas');
     canvas.height=video.videoHeight;
@@ -342,6 +379,7 @@ function getImageDataFromVideo(video,x,y,width,height){
 }
 
 /**
+ * @param {ImageData} imageData
  * @return {Number}
  */
 function getCardId(imageData){
@@ -359,10 +397,47 @@ function getCardId(imageData){
     )||NaN;
 }
 
+/**
+ * 
+ * @param {Player[]} players 
+ */
+function resetPlayerCards(players){
+    for(const player of players){
+        player.card=null;
+    }
 
+    shouldUpdatePlayers=true;
+}
 
+/**
+ * 
+ * @param {Player} player0 
+ * @param {Player} player1 
+ * @returns 
+ */
+function mainloop(player0,player1){
+    if(!player0.card||!player1.card){
+        setTimeout(()=>{
+            mainloop(player0,player1);
+        },200);
+        return;
+    }
 
+    for(const effect of player0.effects){
+        effect.run(player0,player1);
+    }
 
-function mainloop(){
+    for(const effect of player1.effects){
+        effect.run(player1,player0);
+    }
 
+    player0.card.prePlay(player0,player1);
+    player1.card.prePlay(player1,player0);
+
+    player0.card.play(player0,player1);
+    player1.card.play(player1,player0);
+
+    setTimeout(()=>{
+        mainloop(player0,player1);
+    },5000);
 }

@@ -141,7 +141,7 @@ class Player{
     }
 
     win(){
-
+        console.log('Game Finish!!!');
     }
 }
 

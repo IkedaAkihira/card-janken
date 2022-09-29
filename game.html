@@ -22,7 +22,7 @@
 
     <button class="btn btn-primary" id="next-turn-button">次のターン</button>    
     <script>
-        const life=100;
+        const life=5;
         const playerL=new Player(life);
         const playerR=new Player(life);
 
@@ -30,7 +30,6 @@
 
         //camera setup
         const video=document.createElement('video');
-        document.body.appendChild(video);
         navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then((stream)=>{
             video.srcObject=stream;
             video.play();

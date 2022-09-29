@@ -548,7 +548,7 @@ function mainloop(player0,player1){
  * @param {Function} callback 
  */
 function startNextTurn(callback){
-    nextTurnButton.style.display='block';
+    nextTurnButton.style.display='inline';
 
     nextTurnButton.onclick=()=>{
         callback();

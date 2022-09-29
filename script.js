@@ -1,24 +1,24 @@
 const cardList=[
-    'ザリガニ・タイム',
-    '奥の手',
-    '未熟な拳',
-    '幸運の拳',
-    '祈り',
-    'プロビデンスのチョキ',
-    '最強',
-    '理不尽ビンタ',
-    '強いパンチ',
-    'チョイス',
-    '連続パンチ',
-    '追いのチョキ',
-    '努力の拳',
-    'そこそこの拳',
-    '熟練の拳',
-    '猛者の拳',
-    '磨き上げられた拳',
-    '投石器',
-    '剣',
-    '盾'
+    'card_crayfish_time',
+    'card_crayfish_paper',
+    'card_fist_noob',
+    'card_fist_lucky',
+    'card_heal',
+    'card_providence',
+    'card_strongest_scissor',
+    'card_unreasonable_slap',
+    'card_fist_high_damage',
+    'card_choice',
+    'card_continuous_panch',
+    'card_additional_scissor',
+    'card_fist_training',
+    'card_fist_normal',
+    'card_fist_proficiency',
+    'card_fist_strong_guy',
+    'card_fist_ultimate',
+    'card_trebuchet',
+    'card_sword',
+    'card_shield'
 ];
 let shouldUpdatePlayers=true;
 let nextTurnButton;
@@ -481,13 +481,14 @@ function resetPlayerCards(...players){
  * 
  * @param {Player} player0 
  * @param {Player} player1 
+ * @param {Function} callback
  * @returns 
  */
-function mainloop(player0,player1){
+function mainloop(player0,player1,callback){
     //wait while cards are not set
     if(!player0.card||!player1.card){
         setTimeout(()=>{
-            mainloop(player0,player1);
+            mainloop(player0,player1,callback);
         },200);
         return;
     }
@@ -536,22 +537,23 @@ function mainloop(player0,player1){
     console.log(player0);
     console.log(player1);
 
+    callback();
 
     startNextTurn(()=>{
         resetPlayerCards(player0,player1);
-        mainloop(player0,player1);
+        mainloop(player0,player1,callback);
     });
 }
 
 /**
  * 
- * @param {Function} callback 
+ * @param {Function} startCallback 
  */
-function startNextTurn(callback){
+function startNextTurn(startCallback){
     nextTurnButton.style.display='inline';
 
     nextTurnButton.onclick=()=>{
-        callback();
+        startCallback();
         nextTurnButton.style.display='none';
     }
 }

@@ -25,14 +25,14 @@
                 <div class="life text-center">
                     <span class="align-middle fs-2" id="player1-hp">5</span>
                 </div>
-                <img src="img/card_hidden.svg" class="w-75 my-3"/>
+                <img src="img/card_hidden.svg" class="w-75 my-3" id="card1"/>
             </div>
             <div class="col-6 text-end">
                 <h1>Player2</h1>
                 <div class="life text-center" style="margin-left:auto;">
                     <span class="align-middle fs-2" id="player2-hp">5</span>
                 </div>
-                <img src="img/card_hidden.svg" class="w-75 my-3"/>
+                <img src="img/card_hidden.svg" class="w-75 my-3" id="card2"/>
             </div>
         </div>
     </div>
@@ -46,6 +46,9 @@
 
         const playerLHp=document.getElementById('player1-hp');
         const playerRHp=document.getElementById('player2-hp');
+
+        const cardImageL=document.getElementById('card1');
+        const cardImageR=document.getElementById('card2');
 
         nextTurnButton=document.getElementById('next-turn-button');
 
@@ -82,9 +85,32 @@
             
         }
 
-        startNextTurn(()=>{
-            mainloop(playerL,playerR);
-        });
+        startNextTurn(
+            ()=>{
+            mainloop(playerL,playerR,
+                ()=>{
+                    cardImageL.classList.toggle('turning');
+                    cardImageR.classList.toggle('turning');
+
+                    setTimeout(()=>{
+                        cardImageL.src=`img/${playerL.card.name}.svg`;
+                        cardImageR.src=`img/${playerR.card.name}.svg`;
+                    },1000);
+
+                    setTimeout(()=>{
+                        cardImageL.classList.toggle('turning');
+                        cardImageR.classList.toggle('turning');
+                        
+                        playerLHp.textContent=playerL.hp;
+                        playerRHp.textContent=playerR.hp;
+                    },2000);
+                }
+            );
+            
+            cardImageL.src=`img/card_hidden.svg`;
+            cardImageR.src=`img/card_hidden.svg`;
+            }
+        );
     </script>
 </body>
 </html>

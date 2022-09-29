@@ -20,14 +20,17 @@
         
     </div>
 
-    
+    <button class="btn btn-primary" id="next-turn-button">次のターン</button>    
     <script>
         const life=5;
         const playerL=new Player(life);
         const playerR=new Player(life);
 
+        nextTurnButton=document.getElementById('next-turn-button');
+
         //camera setup
         const video=document.createElement('video');
+        document.body.appendChild(video);
         navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then((stream)=>{
             video.srcObject=stream;
             video.play();
@@ -43,9 +46,9 @@
 
             if(!shouldUpdatePlayers)
                 return;
-            
-            const imageDataL=getImageDataFromVideo(video,0,0,Math.floor(video.videoWidth/2),video.videoHeight);
-            const imageDataR=getImageDataFromVideo(video,Math.floor(video.videoWidth/2),0,Math.floor(video.videoWidth/2),video.videoHeight);
+
+            const imageDataL=getImageDataFromVideo(video,Math.floor(video.videoWidth/2),0,Math.floor(video.videoWidth/2),video.videoHeight);            
+            const imageDataR=getImageDataFromVideo(video,0,0,Math.floor(video.videoWidth/2),video.videoHeight);
             
             const cardIdL=getCardId(imageDataL);
             const cardIdR=getCardId(imageDataR);
@@ -57,7 +60,9 @@
                 playerR.card=Card.fromCardId(cardIdR);
         }
 
-        mainloop(playerL,playerR);
+        startNextTurn(()=>{
+            mainloop(playerL,playerR);
+        });
     </script>
 </body>
 </html>

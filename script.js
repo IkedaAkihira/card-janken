@@ -20,8 +20,10 @@ const cardList=[
     '剣',
     '盾'
 ];
-
 let shouldUpdatePlayers=true;
+let nextTurnButton;
+
+//classes
 class Card{
     /**@type {number} */
     id;
@@ -464,10 +466,26 @@ function mainloop(player0,player1){
         
     if(player1.hp<=0)
         player0.win();
+    
+    console.log(player0);
+    console.log(player1);
 
-    resetPlayerCards(player0,player1);
 
-    setTimeout(()=>{
+    startNextTurn(()=>{
+        resetPlayerCards(player0,player1);
         mainloop(player0,player1);
-    },5000);
+    });
+}
+
+/**
+ * 
+ * @param {Function} callback 
+ */
+function startNextTurn(callback){
+    nextTurnButton.style.display='block';
+
+    nextTurnButton.onclick=()=>{
+        callback();
+        nextTurnButton.style.display='none';
+    }
 }

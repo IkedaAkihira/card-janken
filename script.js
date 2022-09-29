@@ -24,6 +24,143 @@ let shouldUpdatePlayers=true;
 let nextTurnButton;
 
 //classes
+class Player{
+    static JUDGE_WIN=2;
+    static JUDGE_LOSE=1;
+    static JUDGE_DRAW=0;
+
+    /**@type {number} */
+    hp;
+    /**@type {Effect[]} */
+    effects;
+    /**@type {Card} */
+    card;
+    /**@type {number} */
+    judge;
+
+    constructor(hp){
+        this.hp=hp;
+        this.effects=[];
+    }
+
+    /**
+     * @param {Player} opponent
+     */
+    updateJudge(opponent){
+        this.judge=(3+this.card.type-opponent.card.type)%3;
+    }
+
+    win(){
+        console.log('Game Finish!!!');
+    }
+
+    damage(amount,isJudgeDamage){
+        this.hp-=amount;
+        for(const effect of this.effects){
+            effect.onDamage(amount,isJudgeDamage);
+        }
+    }
+
+    heal(amount){
+        this.hp+=amount;
+        for(const effect of this.effects){
+            effect.onHeal(amount);
+        }
+    }
+}
+
+//effect
+class Effect{
+    /**@type {number} */
+    time; 
+    /**@type {string} */
+    effectText;
+    /**@type {Player} */
+    parentPlayer;
+
+    /**
+     * 
+     * @param {Player} parentPlayer
+     * @param {Number} time 
+     * @param {String} effectText
+     */
+    constructor(parentPlayer,time,effectText){
+        this.time=time;
+        this.effectText=effectText;
+        this.parentPlayer=parentPlayer;
+    }
+
+    run(){
+        this.time--;
+    }
+
+    /**
+     * 
+     * @param {number} amount 受けたダメージ量
+     * @param {boolean} isJudgeDamage ジャンケンのルールによるダメージかどうか
+     */
+    onDamage(amount,isJudgeDamage){
+
+    }
+
+    onHeal(amount){
+
+    }
+}
+
+class EffectCrayFish extends Effect{
+    constructor(parentPlayer,time){
+        super(parentPlayer,time,'ザリガニ・タイム');
+    }
+    /**
+     * 
+     * @param {Player} player 
+     * @param {Player} opponent 
+     */
+    run(){
+        super.run();
+
+        //奥の手スキップ処理
+        if(this.parentPlayer.card.name===cardList[1])
+            return;
+        
+        //パーをチョキに
+        if(this.parentPlayer.card.type==2)
+            this.parentPlayer.card.type=1;
+    }
+}
+
+class EffectShield extends Effect{
+    constructor(parentPlayer,time){
+        super(parentPlayer,time,'シールド');
+    }
+
+    /**
+     * 
+     * @param {number} amount 
+     * @param {boolean} isJudgeDamage 
+     */
+    onDamage(amount,isJudgeDamage){
+        if(isJudgeDamage)
+            return;
+        
+        this.parentPlayer.hp+=amount;
+    }
+}
+
+class EffectDisableJudgeDamage extends Effect{
+    constructor(parentPlayer,time){
+        super(parentPlayer,time,'ジャッジダメージ無効化');
+    }
+    onDamage(amount,isJudgeDamage){
+        if(!isJudgeDamage)
+            return;
+
+        this.parentPlayer.hp+=amount;
+    }
+}
+
+//card
 class Card{
     /**@type {number} */
     id;
@@ -116,93 +253,14 @@ class Card{
     }
 }
 
-class Player{
-    static JUDGE_WIN=2;
-    static JUDGE_LOSE=1;
-    static JUDGE_DRAW=0;
-
-    /**@type {number} */
-    hp;
-    /**@type {Effect[]} */
-    effects;
-    /**@type {Card} */
-    card;
-    /**@type {number} */
-    judge;
-
-    constructor(hp){
-        this.hp=hp;
-        this.effects=[];
-    }
-
-    /**
-     * @param {Player} opponent
-     */
-    updateJudge(opponent){
-        this.judge=(3+this.card.type-opponent.card.type)%3;
-    }
-
-    win(){
-        console.log('Game Finish!!!');
-    }
-}
-
-class Effect{
-    /**@type {number} */
-    time; 
-    /**@type {string} */
-    effectText;
-
-    /**
-     * 
-     * @param {Number} time 
-     * @param {String} effectText
-     */
-    constructor(time,effectText){
-        this.time=time;
-        this.effectText=effectText;
-    }
-
-    /**
-     * 
-     * @param {Player} player 
-     * @param {Player} opponent 
-     */
-    run(player,opponent){
-        time--;
-    }
-}
-
-class EffectCrayFish extends Effect{
-    constructor(time){
-        super(time,'ザリガニ・タイム');
-    }
-    /**
-     * 
-     * @param {Player} player 
-     * @param {Player} opponent 
-     */
-    run(player,opponent){
-        super.run(player,opponent);
-
-        //奥の手スキップ処理
-        if(play.card.name===cardList[1])
-            return;
-        
-        //パーをチョキに
-        if(player.card.type==2)
-            player.card.type=1;
-    }
-}
-
 class CardCrayFish extends Card{
     constructor(){
         super(0,cardList[0],Card.SCISSOR);
     }
 
     play(player,opponent){
-        player.effects.push(new EffectCrayFish(1));
-        opponent.effects.push(new EffectCrayFish(1));
+        player.effects.push(new EffectCrayFish(player,1));
+        opponent.effects.push(new EffectCrayFish(opponent,1));
     }
 }
 
@@ -225,9 +283,9 @@ class CardFistLucky extends Card{
 
     play(player,opponent){
         if(player.judge===Player.JUDGE_WIN){
-            opponent.hp--;
+            opponent.damage(1,false);
         }else if(player.judge===Player.JUDGE_LOSE){
-            player.hp--;
+            player.damage(1,false);
         }
     }
 }
@@ -237,7 +295,7 @@ class CardHeal extends Card{
     }
 
     play(player,opponent){
-        player.hp++;
+        player.heal(1);
     }
 }
 
@@ -266,10 +324,9 @@ class CardUnreasonable extends Card{
     }
 
     play(player,opponent){
-        opponent.hp--;
+        opponent.damage(1,false);
 
-        if(player.judge===Player.JUDGE_WIN)
-            opponent++;
+        opponent.effects.push(new EffectDisableJudgeDamage(opponent,1));
     }
 }
 
@@ -280,7 +337,7 @@ class CardFistStrong extends Card{
 
     play(player,opponent){
         if(player.judge===Player.JUDGE_WIN)
-            opponent.hp--;
+            opponent.damage(1,false);
     }
 }
 
@@ -342,9 +399,7 @@ class CardTrebuchet extends Card{
     }
 
     play(player,opponent){
-        if(player.judge==LOSE){
-            player.hp++;
-        }
+        player.effects.push(new EffectDisableJudgeDamage(player,1));
     }
 }
 
@@ -354,7 +409,7 @@ class CardSword extends Card{
     }
 
     play(player,opponent){
-        opponent.hp--;
+        opponent.damage(1,false);
     }
 }
 
@@ -363,8 +418,8 @@ class CardShield extends Card{
         super(19,cardList[19],Card.PAPER);
     }
 
-    play(player,opponent){
-        
+    prePlay(player,opponent){
+        player.effects.push(new EffectShield(player,1));
     }
 }
 
@@ -407,7 +462,7 @@ function getCardId(imageData){
         return NaN;
     return parseInt(
         code.data
-    )||NaN;
+    );
 }
 
 /**
@@ -429,6 +484,7 @@ function resetPlayerCards(...players){
  * @returns 
  */
 function mainloop(player0,player1){
+    //wait while cards are not set
     if(!player0.card||!player1.card){
         setTimeout(()=>{
             mainloop(player0,player1);
@@ -436,8 +492,11 @@ function mainloop(player0,player1){
         return;
     }
 
+    //stop updating players' cards
     shouldUpdatePlayers=false;
 
+
+    //run effects
     for(const effect of player0.effects){
         effect.run(player0,player1);
     }
@@ -445,21 +504,28 @@ function mainloop(player0,player1){
     for(const effect of player1.effects){
         effect.run(player1,player0);
     }
+    
+    //remove finished effects
+    player0.effects=player0.effects.filter((v)=>v.time>0);
+    player1.effects=player1.effects.filter((v)=>v.time>0);
 
+    //update player judge
     player0.updateJudge(player1);
     player1.updateJudge(player0);
 
+    //prePlay
     player0.card.prePlay(player0,player1);
     player1.card.prePlay(player1,player0);
 
+    //play
     player0.card.play(player0,player1);
     player1.card.play(player1,player0);
 
     if(player0.judge===Player.JUDGE_WIN)
-        player1.hp--;
+        player1.damage(1,true);
     
     if(player1.judge===Player.JUDGE_WIN)
-        player0.hp--;
+        player0.damage(1,true);
     
     if(player0.hp<=0)
         player1.win();

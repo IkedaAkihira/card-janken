@@ -22,7 +22,7 @@
 
     <button class="btn btn-primary" id="next-turn-button">次のターン</button>    
     <script>
-        const life=5;
+        const life=100;
         const playerL=new Player(life);
         const playerR=new Player(life);
 
@@ -53,11 +53,13 @@
             const cardIdL=getCardId(imageDataL);
             const cardIdR=getCardId(imageDataR);
 
-            if(cardIdL)
+
+            if(cardIdL!==NaN)
                 playerL.card=Card.fromCardId(cardIdL);
                 
-            if(cardIdR)
+            if(cardIdR!==NaN)
                 playerR.card=Card.fromCardId(cardIdR);
+            
         }
 
         startNextTurn(()=>{

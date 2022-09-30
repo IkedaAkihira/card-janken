@@ -24,6 +24,7 @@
     "eslint-plugin-jsdoc": "^39.3.6"
   },
   "dependencies": {
+    "http-server": "^14.1.1",
     "jsqr": "^1.4.0"
   }
 }

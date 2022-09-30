@@ -85,8 +85,9 @@
             
         }
 
-        startNextTurn(
-            ()=>{
+        function startCallBack(){
+            console.log('start callback');
+            resetPlayerCards(playerL,playerR);
             mainloop(playerL,playerR,
                 ()=>{
                     cardImageL.classList.toggle('turning');
@@ -104,13 +105,16 @@
                         playerLHp.textContent=playerL.hp;
                         playerRHp.textContent=playerR.hp;
                     },2000);
-                }
+                },
+                startCallBack
             );
             
             cardImageL.src=`img/card_hidden.svg`;
             cardImageR.src=`img/card_hidden.svg`;
-            }
-        );
+            console.log('start');
+        }
+
+        startNextTurn(startCallBack);
     </script>
 </body>
 </html>

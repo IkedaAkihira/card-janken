@@ -482,13 +482,14 @@ function resetPlayerCards(...players){
  * @param {Player} player0 
  * @param {Player} player1 
  * @param {Function} callback
+ * @param {Function} startCallback
  * @returns 
  */
-function mainloop(player0,player1,callback){
+function mainloop(player0,player1,callback,startCallback){
     //wait while cards are not set
     if(!player0.card||!player1.card){
         setTimeout(()=>{
-            mainloop(player0,player1,callback);
+            mainloop(player0,player1,callback,startCallback);
         },200);
         return;
     }
@@ -539,10 +540,7 @@ function mainloop(player0,player1,callback){
 
     callback();
 
-    startNextTurn(()=>{
-        resetPlayerCards(player0,player1);
-        mainloop(player0,player1,callback);
-    });
+    startNextTurn(startCallback);
 }
 
 /**
@@ -550,9 +548,11 @@ function mainloop(player0,player1,callback){
  * @param {Function} startCallback 
  */
 function startNextTurn(startCallback){
+    console.log('next turn');
     nextTurnButton.style.display='inline';
 
     nextTurnButton.onclick=()=>{
+        console.log(startCallback);
         startCallback();
         nextTurnButton.style.display='none';
     }

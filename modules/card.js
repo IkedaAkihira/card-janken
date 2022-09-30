@@ -1,4 +1,35 @@
-const cardList=[
+import {
+    EffectCrayFish,
+    EffectDisableJudgeDamage,
+    EffectShield
+} from './effect.js';
+import { Player } from './player.js';
+
+export {
+    Card,
+    CardAdditional,
+    CardChoice,
+    CardContinuous,
+    CardCrayFish,
+    CardCrayFishPaper,
+    CardFistLucky,
+    CardFistNoob,
+    CardFistNormal,
+    CardFistProficiency,
+    CardFistStrong,
+    CardFistStrongGuy,
+    CardFistTraining,
+    CardFistUltimate,
+    CardHeal,
+    CardProvidence,
+    CardShield,
+    CardStrongest,
+    CardSword,
+    CardTrebuchet,
+    CardUnreasonable
+};
+
+export const cardList=[
     'card_crayfish_time',
     'card_crayfish_paper',
     'card_fist_noob',
@@ -20,155 +51,7 @@ const cardList=[
     'card_sword',
     'card_shield'
 ];
-let shouldUpdatePlayers=true;
-let nextTurnButton;
 
-//classes
-class Player{
-    static JUDGE_WIN=2;
-    static JUDGE_LOSE=1;
-    static JUDGE_DRAW=0;
-
-    /**@type {number} */
-    hp;
-    /**@type {Effect[]} */
-    effects;
-    /**@type {Card} */
-    card;
-    /**@type {number} */
-    judge;
-    /**@type {string} */
-    name;
-
-    /**
-     * 
-     * @param {string} name 
-     * @param {number} hp 
-     */
-    constructor(name,hp){
-        this.hp=hp;
-        this.effects=[];
-        this.name=name;
-    }
-
-    /**
-     * @param {Player} opponent
-     */
-    updateJudge(opponent){
-        this.judge=(3+this.card.type-opponent.card.type)%3;
-    }
-
-    win(){
-        console.log('Game Finish!!!');
-    }
-
-    damage(amount,isJudgeDamage){
-        this.hp-=amount;
-        for(const effect of this.effects){
-            effect.onDamage(amount,isJudgeDamage);
-        }
-    }
-
-    heal(amount){
-        this.hp+=amount;
-        for(const effect of this.effects){
-            effect.onHeal(amount);
-        }
-    }
-}
-
-//effect
-class Effect{
-    /**@type {number} */
-    time; 
-    /**@type {string} */
-    effectText;
-    /**@type {Player} */
-    parentPlayer;
-
-    /**
-     * 
-     * @param {Player} parentPlayer
-     * @param {Number} time 
-     * @param {String} effectText
-     */
-    constructor(parentPlayer,time,effectText){
-        this.time=time;
-        this.effectText=effectText;
-        this.parentPlayer=parentPlayer;
-    }
-
-    run(){
-        this.time--;
-    }
-
-    /**
-     * 
-     * @param {number} amount 受けたダメージ量
-     * @param {boolean} isJudgeDamage ジャンケンのルールによるダメージかどうか
-     */
-    onDamage(amount,isJudgeDamage){
-
-    }
-
-    onHeal(amount){
-
-    }
-}
-
-class EffectCrayFish extends Effect{
-    constructor(parentPlayer,time){
-        super(parentPlayer,time,'ザリガニ・タイム');
-    }
-    /**
-     * 
-     * @param {Player} player 
-     * @param {Player} opponent 
-     */
-    run(){
-        super.run();
-
-        //奥の手スキップ処理
-        if(this.parentPlayer.card.name===cardList[1])
-            return;
-        
-        //パーをチョキに
-        if(this.parentPlayer.card.type==2)
-            this.parentPlayer.card.type=1;
-    }
-}
-
-class EffectShield extends Effect{
-    constructor(parentPlayer,time){
-        super(parentPlayer,time,'シールド');
-    }
-
-    /**
-     * 
-     * @param {number} amount 
-     * @param {boolean} isJudgeDamage 
-     */
-    onDamage(amount,isJudgeDamage){
-        if(isJudgeDamage)
-            return;
-        
-        this.parentPlayer.hp+=amount;
-    }
-}
-
-class EffectDisableJudgeDamage extends Effect{
-    constructor(parentPlayer,time){
-        super(parentPlayer,time,'ジャッジダメージ無効化');
-    }
-    onDamage(amount,isJudgeDamage){
-        if(!isJudgeDamage)
-            return;
-
-        this.parentPlayer.hp+=amount;
-    }
-}
-
-//card
 class Card{
     /**@type {number} */
     id;
@@ -238,7 +121,7 @@ class Card{
         if(cardId===18)
             return new CardSword();
         if(cardId===19)
-	        return new CardShield();
+            return new CardShield();
         return undefined;
     }
 
@@ -428,140 +311,5 @@ class CardShield extends Card{
 
     prePlay(player,opponent){
         player.effects.push(new EffectShield(player,1));
-    }
-}
-
-/**
- * 
- * @param {HTMLVideoElement} video 
- * @param {number} x 
- * @param {number} y 
- * @param {number} width 
- * @param {number} height 
- * @returns 
- */
-function getImageDataFromVideo(video,x,y,width,height){
-    const canvas=document.createElement('canvas');
-    canvas.height=video.videoHeight;
-    canvas.width=video.videoWidth;
-
-    const ctx=canvas.getContext('2d');
-
-    ctx.drawImage(video,0,0);
-
-    const imageData=ctx.getImageData(x,y,width,height);
-
-    return imageData;
-}
-
-/**
- * @param {ImageData} imageData
- * @return {Number}
- */
-function getCardId(imageData){
-    
-    const code=jsQR(
-        imageData.data,
-        imageData.width,
-        imageData.height,
-        {inversionAttempts:'dontInvert'}
-    );
-    if(!code)
-        return NaN;
-    return parseInt(
-        code.data
-    );
-}
-
-/**
- * 
- * @param {Player[]} players 
- */
-function resetPlayerCards(...players){
-    for(const player of players){
-        player.card=null;
-    }
-
-    shouldUpdatePlayers=true;
-}
-
-/**
- * 
- * @param {Player} player0 
- * @param {Player} player1 
- * @param {Function} callback
- * @param {Function} startCallback
- * @returns 
- */
-function mainloop(player0,player1,callback,startCallback){
-    //wait while cards are not set
-    if(!player0.card||!player1.card){
-        setTimeout(()=>{
-            mainloop(player0,player1,callback,startCallback);
-        },200);
-        return;
-    }
-
-    //stop updating players' cards
-    shouldUpdatePlayers=false;
-
-
-    //run effects
-    for(const effect of player0.effects){
-        effect.run(player0,player1);
-    }
-
-    for(const effect of player1.effects){
-        effect.run(player1,player0);
-    }
-    
-    //remove finished effects
-    player0.effects=player0.effects.filter((v)=>v.time>0);
-    player1.effects=player1.effects.filter((v)=>v.time>0);
-
-    //update player judge
-    player0.updateJudge(player1);
-    player1.updateJudge(player0);
-
-    //prePlay
-    player0.card.prePlay(player0,player1);
-    player1.card.prePlay(player1,player0);
-
-    //play
-    player0.card.play(player0,player1);
-    player1.card.play(player1,player0);
-
-    if(player0.judge===Player.JUDGE_WIN)
-        player1.damage(1,true);
-    
-    if(player1.judge===Player.JUDGE_WIN)
-        player0.damage(1,true);
-    
-    if(player0.hp<=0)
-        player1.win();
-        
-    if(player1.hp<=0)
-        player0.win();
-    
-    console.log(player0);
-    console.log(player1);
-
-    callback();
-
-    startNextTurn(startCallback);
-}
-
-/**
- * 
- * @param {Function} startCallback 
- */
-function startNextTurn(startCallback){
-    console.log('next turn');
-    nextTurnButton.style.display='inline';
-
-    nextTurnButton.onclick=()=>{
-        console.log(startCallback);
-        startCallback();
-        nextTurnButton.style.display='none';
     }
 }

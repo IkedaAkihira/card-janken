@@ -1,0 +1,30 @@
+{
+  "name": "card-janken",
+  "version": "1.0.0",
+  "description": "カードジャンケンは、カードとジャンケンを組み合わせた最高にクールでエキサイティングなゲームだ!!\r ## はじめかた\r 1. [カードデータ](./print/card-print-data.pdf)と[トークンデータ](./print/card-print-data.pdf)を[専用の用紙](https://www.a-one.co.jp/product/search/detail.php?id=51164)に印刷して、カードを作ろう!!\r 2. [ルール](./docs/rule.pdf)を覚えて、友達とバトルスタート!!",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IkedaAkihira/card-janken.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IkedaAkihira/card-janken/issues"
+  },
+  "homepage": "https://github.com/IkedaAkihira/card-janken#readme",
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-plugin-jsdoc": "^39.3.6"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "jsqr": "^1.4.0"
+  }
+}

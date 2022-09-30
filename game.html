@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/desvg@1.0.2/desvg.min.js"></script>
     <script src="./jsQR.js"></script>
+    <script src="audio.js"></script>
     <script src="script.js"></script>
 
     <title>カードジャンケン</title>
@@ -52,6 +53,8 @@
 
         nextTurnButton=document.getElementById('next-turn-button');
 
+        let isStarted=false;
+
         //camera setup
         const video=document.createElement('video');
         navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then((stream)=>{
@@ -86,12 +89,20 @@
         }
 
         function startCallBack(){
+            if(!isStarted){
+                isStarted=true;
+                bgm.play();
+            }
+
             console.log('start callback');
             resetPlayerCards(playerL,playerR);
             mainloop(playerL,playerR,
                 ()=>{
                     cardImageL.classList.toggle('turning');
                     cardImageR.classList.toggle('turning');
+
+                    cardSE.currentTime=0;
+                    cardSE.play();
 
                     setTimeout(()=>{
                         cardImageL.src=`img/${playerL.card.name}.svg`;

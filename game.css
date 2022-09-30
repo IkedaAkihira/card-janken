@@ -1,0 +1,28 @@
+.life{
+    background-image: url(img/heart.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width:50px;
+    height:50px;
+    font-weight: bold;
+}
+
+
+@keyframes turning{
+    0%{
+        transform: rotateY(0deg);
+    }
+
+    30%,70%{
+        transform: rotateY(90deg);
+    }
+
+    100%{
+        transform: rotateY(0deg);
+    }
+}
+
+
+.turning{
+    animation: turning 2s ease-in-out forwards;
+}

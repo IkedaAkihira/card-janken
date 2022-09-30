@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="540" height="860"
+    fill="#ffffff" stroke="#000000" stroke-width="5px">
+
+
+    <!--border-->
+    <rect stroke="#000" stroke-width="30" x="0" y="0" width="540" height="860" rx="45" ry="45"/>
+    
+    <!--card cut line-->
+    <rect stroke="#fff" style="fill:none" stroke-width="1" x="0" y="0" width="540" height="860" rx="30" ry="30"/>
+
+
+    
+    
+
+</svg>

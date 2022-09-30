@@ -37,10 +37,18 @@ class Player{
     card;
     /**@type {number} */
     judge;
+    /**@type {string} */
+    name;
 
-    constructor(hp){
+    /**
+     * 
+     * @param {string} name 
+     * @param {number} hp 
+     */
+    constructor(name,hp){
         this.hp=hp;
         this.effects=[];
+        this.name=name;
     }
 
     /**

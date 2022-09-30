@@ -64,6 +64,8 @@ function start(){
         audio.bgm.play();
     }
 
+    game.resetPlayerCards();
+
     nextTurnButton.style.display='none';
 
     console.log('start turn!!');

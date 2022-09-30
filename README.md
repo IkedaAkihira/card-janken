@@ -9,3 +9,7 @@
 
 ## index.htmlについて
 WIP
+
+## 仕様技術
+* bootstrap
+* jsQR

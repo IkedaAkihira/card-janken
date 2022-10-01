@@ -25,17 +25,19 @@
     <title>カードジャンケン</title>
 </head>
 <body>
-    <div class="mx-auto w-50 mt-3">
+    <div class="mx-auto w-50 mt-3 position-relative">
+        <h1 class="position-absolute top-50 text-center w-75 pb-1" id="game-finish-text"></h1>
         <div class="row">
             <div class="col-6">
-                <h1>Player1</h1>
+                <h1 id="player1">Player1</h1>
                 <div class="life text-center">
                     <span class="align-middle fs-2" id="player1-hp">5</span>
                 </div>
                 <img src="img/card_hidden.svg" class="w-75 my-3" id="card1"/>
             </div>
+
             <div class="col-6 text-end">
-                <h1>Player2</h1>
+                <h1 id="player2">Player2</h1>
                 <div class="life text-center" style="margin-left:auto;">
                     <span class="align-middle fs-2" id="player2-hp">5</span>
                 </div>

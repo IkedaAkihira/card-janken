@@ -54,3 +54,9 @@
 .rainbow{
     animation: rainbow 1s linear infinite;
 }
+
+#game-finish-text{
+    left:12.5%;
+    background-color: #00000080;
+    color:#fff;
+}

@@ -6,8 +6,8 @@ import * as audio from './modules/audio.js';
 
 
 const life=5;
-const playerL=new Player('player1',life);
-const playerR=new Player('player2',life);
+const playerL=new Player('Player1',life);
+const playerR=new Player('Player2',life);
 
 const game=new Game(playerL,playerR);
 
@@ -18,6 +18,9 @@ const cardImageL=document.getElementById('card1');
 const cardImageR=document.getElementById('card2');
 
 const nextTurnButton=document.getElementById('next-turn-button');
+
+const gameFinishText=document.getElementById('game-finish-text');
+gameFinishText.style.display='none';
 
 let isStarted=false;
 
@@ -70,7 +73,7 @@ function start(){
 
     console.log('start turn!!');
     game.resetPlayerCards(playerL,playerR);
-    game.update().then(()=>{
+    game.update().then((winnerArray)=>{
         cardImageL.classList.toggle('turning');
         cardImageR.classList.toggle('turning');
 
@@ -89,7 +92,17 @@ function start(){
             playerLHp.textContent=playerL.hp;
             playerRHp.textContent=playerR.hp;
 
-            nextTurnButton.style.display='inline';
+            if(!winnerArray.length){
+                nextTurnButton.style.display='inline';
+                return;
+            }
+            if(winnerArray.length===1){
+                gameFinishText.textContent=`${winnerArray[0].name} Win!!`;
+                gameFinishText.classList.toggle('rainbow');
+            }else{
+                gameFinishText.textContent='Draw!!';
+            }
+            gameFinishText.style.display='inline';
         },2000);
     });
     

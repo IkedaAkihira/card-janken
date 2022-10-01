@@ -26,3 +26,31 @@
 .turning{
     animation: turning 2s ease-in-out forwards;
 }
+
+@keyframes rainbow{
+    0%{
+        color: #ff8080;
+    }
+    16%{
+        color: #ffff00;
+    }
+    33%{
+        color: #80ff80;
+    }
+    50%{
+        color: #00ffff;
+    }  
+    67%{
+        color: #8080ff;
+    }
+    84%{
+        color: #ff00ff;
+    }
+    100%{
+        color: #ff8080;
+    }
+}
+
+.rainbow{
+    animation: rainbow 1s linear infinite;
+}

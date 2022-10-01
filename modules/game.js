@@ -34,6 +34,8 @@ export class Game{
                     return;
                 }
 
+                const winnerArray=[];
+
                 //stop updating players' cards
                 this.player0.canChangeCard=false;
                 this.player1.canChangeCard=false;
@@ -41,11 +43,11 @@ export class Game{
 
                 //run effects
                 for(const effect of this.player0.effects){
-                    effect.run(this.player0,this.player1);
+                    effect.run();
                 }
 
                 for(const effect of this.player1.effects){
-                    effect.run(this.player1,this.player0);
+                    effect.run();
                 }
                 
                 //remove finished effects
@@ -75,11 +77,13 @@ export class Game{
                     
                 if(this.player1.hp<=0)
                     this.player0.win();
-                
-                console.log(this.player0);
-                console.log(this.player1);
 
-                res();
+                if(this.player0.isWon)
+                    winnerArray.push(this.player0);                
+                if(this.player1.isWon)
+                    winnerArray.push(this.player1);
+
+                res(winnerArray);
             }
         );
     }

@@ -17,6 +17,8 @@ export class Player{
     name;
     /**@type {boolean} */
     canChangeCard=true;
+    /**@type {boolean} */
+    isWon=false;
 
     /**
      * 
@@ -53,6 +55,7 @@ export class Player{
 
     win(){
         console.log('Game Finish!!!');
+        this.isWon=true;
     }
 
     damage(amount,isJudgeDamage){
